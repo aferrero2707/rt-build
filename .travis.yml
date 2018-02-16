@@ -13,6 +13,7 @@ matrix:
                 - python support/travis_blocking_stdout.py
                 - travis_wait 120 sleep infinity & sudo docker pull photoflow/docker-trusty-gtk3
                 - git clone https://github.com/Beep6581/RawTherapee.git --branch dev --single-branch
+                - rm -rf RawTherapee/ci
                 - cp -a ci RawTherapee
                 - cd RawTherapee
                 - sudo docker run -it -v $(pwd):/sources photoflow/docker-trusty-gtk3 bash /sources/ci/appimage.sh
@@ -35,12 +36,16 @@ matrix:
           before_script:
             - git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
             - python support/travis_blocking_stdout.py
+            - git clone https://github.com/Beep6581/RawTherapee.git --branch dev --single-branch
+            - rm -rf RawTherapee/ci
+            - cp -a ci RawTherapee
+            - cd RawTherapee
             - sudo docker run -it -e "TRAVIS_BUILD_DIR=/sources" -e "TRAVIS_BRANCH=${TRAVIS_BRANCH}" -e "TRAVIS_COMMIT=${TRAVIS_COMMIT}" -v $(pwd):/sources photoflow/docker-zesty-mingw bash -c /sources/ci/package-w64.sh
             - # check if zip file was successfully created
             - # abort job with failure if not
             - ls rawtherapee-w64*.zip
           after_success:
-            - cd $TRAVIS_BUILD_DIR
+            - cd $TRAVIS_BUILD_DIR/RawTherapee
             - pwd
             - ls rawtherapee-w64*.zip
             - wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
