@@ -48,7 +48,7 @@ matrix:
             - pwd
             - ls rawtherapee-w64*.zip
             - wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
-            - bash  ./upload_rotate.sh "continuous" rawtherapee-w64*.zip
+            #- bash  ./upload_rotate.sh "continuous" rawtherapee-w64*.zip
 
 branches:
   except:
