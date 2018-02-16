@@ -1,10 +1,11 @@
 #! /bin/bash
-cd /usr/i686-w64-mingw32/include || exit 1
-rm -f Shlobj.h || exit 1
-ln -s shlobj.h Shlobj.h || exit 1
+#cd /usr/i686-w64-mingw32/include || exit 1
+#rm -f Shlobj.h || exit 1
+#ln -s shlobj.h Shlobj.h || exit 1
 (mkdir -p /work/w64-build && cd /work/w64-build) || exit 1
 echo "Compiling RawTherapee"
 ls /sources
+sed -i 's/Shlobj.h/shlobj.h/g' /sources/rtgui/options.cc
 (crossroad cmake -DCMAKE_BUILD_TYPE=Release -DPROC_TARGET_NUMBER=1 \
  -DCACHE_NAME_SUFFIX="'5-dev'" \
  -DCMAKE_C_FLAGS="'-mwin32 -m64 -mthreads -msse2'" \
