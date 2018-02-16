@@ -1,0 +1,53 @@
+language: generic
+
+matrix:
+    include:
+        - os: linux
+          dist: trusty
+          compiler: g++
+          sudo: required
+          services: docker
+          env: TARGET_SYSTEM=Linux
+          before_script:
+                - git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
+                - python support/travis_blocking_stdout.py
+                - travis_wait 120 sleep infinity & sudo docker pull photoflow/docker-trusty-gtk3
+                - git clone https://github.com/Beep6581/RawTherapee.git --branch dev --single-branch
+                - cp -a ci RawTherapee
+                - cd RawTherapee
+                - sudo docker run -it -v $(pwd):/sources photoflow/docker-trusty-gtk3 bash /sources/ci/appimage.sh
+                - bash ci/appimage2.sh
+          after_success:
+              - cd $TRAVIS_BUILD_DIR/RawTherapee
+              - pwd
+              - ls -lh
+              - ls -lh build/out/* # Assuming you have some files in out/ that you would like to upload
+              #- wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+              #- wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload.sh
+              - wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
+              - bash  ./upload_rotate.sh "continuous" build/out/*
+        - os: linux
+          dist: trusty
+          compiler: g++
+          sudo: required
+          dist: trusty
+          env: TARGET_SYSTEM=Windows
+          before_script:
+            - git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
+            - python support/travis_blocking_stdout.py
+            - sudo docker run -it -e "TRAVIS_BUILD_DIR=/sources" -e "TRAVIS_BRANCH=${TRAVIS_BRANCH}" -e "TRAVIS_COMMIT=${TRAVIS_COMMIT}" -v $(pwd):/sources photoflow/docker-zesty-mingw bash -c /sources/ci/package-w64.sh
+            - # check if zip file was successfully created
+            - # abort job with failure if not
+            - ls rawtherapee-w64*.zip
+          after_success:
+            - cd $TRAVIS_BUILD_DIR
+            - pwd
+            - ls rawtherapee-w64*.zip
+            - wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
+            - bash  ./upload_rotate.sh "continuous" rawtherapee-w64*.zip
+
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous)$/
+    
