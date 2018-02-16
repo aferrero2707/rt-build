@@ -1,4 +1,7 @@
 #! /bin/bash
+cd /usr/i686-w64-mingw32/include || exit 1
+rm -f Shlobj.h || exit 1
+ln -s shlobj.h Shlobj.h || exit 1
 (mkdir -p /work/w64-build && cd /work/w64-build) || exit 1
 echo "Compiling RawTherapee"
 ls /sources
