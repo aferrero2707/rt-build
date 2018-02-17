@@ -27,7 +27,7 @@ crossroad w64 w64-build --run=$TRAVIS_BUILD_DIR/ci/build-w64.sh
 ls /work/w64-build/Release/rawtherapee.exe || exit 1
 
 bundle_package=rawtherapee
-bundle_version="w64-$(date +%Y%m%d)_$(date +%H%M)-git-${TRAVIS_BRANCH}"
+bundle_version="w64-$(date +%Y%m%d)_$(date +%H%M)-git-${RT_BRANCH}"
 
 # stuff is in here
 basedir=`pwd`

@@ -7,12 +7,14 @@ matrix:
           compiler: g++
           sudo: required
           services: docker
-          env: TARGET_SYSTEM=Linux
+          env: 
+            - TARGET_SYSTEM=Linux
+            - RT_BRANCH=dev
           before_script:
                 - git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
                 - python support/travis_blocking_stdout.py
                 - travis_wait 120 sleep infinity & sudo docker pull photoflow/docker-trusty-gtk3
-                - git clone https://github.com/Beep6581/RawTherapee.git --branch dev --single-branch
+                - git clone https://github.com/Beep6581/RawTherapee.git --branch $RT_BRANCH --single-branch
                 - rm -rf RawTherapee/ci
                 - cp -a ci RawTherapee
                 - cd RawTherapee
@@ -31,11 +33,13 @@ matrix:
           compiler: g++
           sudo: required
           dist: trusty
-          env: TARGET_SYSTEM=Windows
+          env: 
+            - TARGET_SYSTEM=Windows
+            - RT_BRANCH=dev
           before_script:
             - git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
             - python support/travis_blocking_stdout.py
-            - git clone https://github.com/Beep6581/RawTherapee.git --branch dev --single-branch
+            - git clone https://github.com/Beep6581/RawTherapee.git --branch $RT_BRANCH --single-branch
             - rm -rf RawTherapee/ci
             - cp -a ci RawTherapee
             - cd RawTherapee

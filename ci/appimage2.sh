@@ -60,7 +60,8 @@ fi
 
 # Generate AppImage; this expects $ARCH, $APP and $VERSION to be set
 glibcVer="$(glibc_needed)"
-ver="git-${TRAVIS_BRANCH}-$(date '+%Y%m%d_%H%M')-glibc${glibcVer}"
+#ver="git-${RT_BRANCH}-$(date '+%Y%m%d_%H%M')-glibc${glibcVer}"
+ver="git-${RT_BRANCH}-$(date '+%Y%m%d_%H%M')"
 ARCH="x86_64"
 VERSION="${ver}"
 mkdir -p ../out/ || exit 1
