@@ -6,6 +6,7 @@
 echo "Compiling RawTherapee"
 ls /sources
 sed -i 's/Shlobj.h/shlobj.h/g' /sources/rtgui/options.cc
+sed -i 's/Shlwapi.h/shlwapi.h/g' /sources/rtgui/placesbrowser.cc
 (crossroad cmake -DCMAKE_BUILD_TYPE=Release -DPROC_TARGET_NUMBER=1 \
  -DCACHE_NAME_SUFFIX="'5-dev'" \
  -DCMAKE_C_FLAGS="'-mwin32 -m64 -mthreads -msse2'" \
