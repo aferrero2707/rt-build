@@ -131,6 +131,8 @@ wget http://ftp.gnome.org/pub/gnome/sources/adwaita-icon-theme/3.26/adwaita-icon
 tar xJf adwaita-icon-theme-3.26.0.tar.xz && cp -a adwaita-icon-theme-3.26.0/Adwaita $repackagedir/share/icons && \
 rm -rf adwaita-icon-theme-3.26.0*) || exit 1
 
+(cd $repackagedir; wget ftp://ftp.equation.com/gdb/64/gdb.exe)
+
 #exit
 
 #echo creating $bundle_package-$bundle_version.zip
