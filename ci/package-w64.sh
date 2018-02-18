@@ -24,6 +24,11 @@ mkdir -p /work/w64-build && cd /work/w64-build
 
 crossroad w64 w64-build --run=$TRAVIS_BUILD_DIR/ci/build-w64.sh
 
+echo ""
+echo "======================"
+echo ""
+echo "Contents of RT install dir:"
+ls -1 /work/w64-build/Release
 ls /work/w64-build/Release/rawtherapee.exe || exit 1
 
 bundle_package=rawtherapee
