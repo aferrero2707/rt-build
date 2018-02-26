@@ -9,7 +9,7 @@ matrix:
           services: docker
           env: 
             - TARGET_SYSTEM=Linux
-            - RT_BRANCH=dev
+            - RT_BRANCH=5.4-rc2
           before_script:
                 - git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
                 - python support/travis_blocking_stdout.py
@@ -35,7 +35,7 @@ matrix:
           dist: trusty
           env: 
             - TARGET_SYSTEM=Windows
-            - RT_BRANCH=dev
+            - RT_BRANCH=5.4-rc2
           before_script:
             - git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
             - python support/travis_blocking_stdout.py
