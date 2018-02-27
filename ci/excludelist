@@ -33,6 +33,7 @@ libstdc++.so.6
 # usr/lib/libstdc++.so.6: version `GLIBCXX_3.4.21' not found
 
 libGL.so.1
+libEGL.so.1
 # Part of the video driver (OpenGL); present on any regular
 # desktop system, may also be provided by proprietary drivers.
 # Known to cause issues if it's bundled.
@@ -59,6 +60,11 @@ libX11.so.6
 # Fedora 23
 # symbol lookup error: ./lib/libX11.so.6: undefined symbol: xcb_wait_for_reply64
 # Uncertain if this is required to be bundled for some distributions - if so we need to write a version check script and use LD_PRELOAD to load the system version if it is newer
+
+libwayland-client.so.0
+libwayland-server.so.0
+# Workaround for:
+# On Sabayon, "symbol lookup error: /usr/lib/libEGL.so.1: undefined symbol: wl_proxy_marshal_constructor_versioned"
 
 #libgio-2.0.so.0
 # Workaround for:
