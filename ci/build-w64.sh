@@ -10,7 +10,7 @@ sed -i 's/Shlwapi.h/shlwapi.h/g' /sources/rtgui/placesbrowser.cc
 sed -i 's|install(FILES "${CMAKE_CURRENT_BINARY_DIR}/WindowsInnoSetup.iss"|#install(FILES "${CMAKE_CURRENT_BINARY_DIR}/WindowsInnoSetup.iss"|' /sources/rtdata/CMakeLists.txt
 
 (crossroad cmake -DCMAKE_BUILD_TYPE=Release -DPROC_TARGET_NUMBER=1 \
- -DCACHE_NAME_SUFFIX="'5-dev'" \
+ -DCACHE_NAME_SUFFIX="'5-dev-ci'" \
  -DCMAKE_C_FLAGS="'-mwin32 -m64 -mthreads -msse2'" \
  -DCMAKE_C_FLAGS_RELEASE="'-DNDEBUG -g -O2'" \
  -DCMAKE_CXX_FLAGS="'-mwin32 -m64 -mthreads -msse2'" \
