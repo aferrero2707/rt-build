@@ -1,7 +1,7 @@
 # rawtherapee nullsoft installer script
 #
 # compile with
-#    makensis -DVERSION=w64-5.4-rc2 rawtherapee.nsi
+#    makensis -DVERSION=5.4-rc2 rawtherapee.nsi
 
   !include "MUI2.nsh"
 
@@ -14,7 +14,7 @@
   SetCompressor LZMA
 
   ;Default installation folder
-  InstallDir "$PROGRAMFILES\RawTherapee-5dev"
+  InstallDir "$PROGRAMFILES64\RawTherapee-5dev"
 
   ;Get installation folder from registry if available
   ;InstallDirRegKey HKCU "Software\RawTherapee-5dev" ""
