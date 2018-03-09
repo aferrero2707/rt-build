@@ -159,6 +159,21 @@ zip -r $TRAVIS_BUILD_DIR/$bundle_package-$bundle_version.zip $bundle_package-$bu
 
 transfer $TRAVIS_BUILD_DIR/$bundle_package-$bundle_version.zip
 
+apt-get install -y icoutils nsis
+
+icotool -c $repackagedir/images/rt-logo-tiny.png $repackagedir/images/rt-logo-small.png $repackagedir/images/rt-logo-medium.png $repackagedir/images/rt-logo-large.png -o $TRAVIS_BUILD_DIR/ci/nsis/rawtherapee-icon.ico
+
+cd $TRAVIS_BUILD_DIR/ci/nsis
+cat rawtherapee.nsi.in | sed "s|%srcdir%|$repackagedir|g" | sed "s|%setupfile%|$TRAVIS_BUILD_DIR/$bundle_package-$bundle_version-setup.exe|g" > rawtherapee.nsi
+echo "NSIS configuration file:"
+cat rawtherapee.nsi
+echo "============================="
+echo ""
+makensis -DVERSION=${RT_BRANCH} rawtherapee.nsi
+
+rm -f $TRAVIS_BUILD_DIR/$bundle_package-$bundle_version-setup.zip
+zip -r $TRAVIS_BUILD_DIR/$bundle_package-$bundle_version-setup.zip $TRAVIS_BUILD_DIR/$bundle_package-$bundle_version-setup.exe
+
 exit
 
 # have to make in a subdir to make sure makensis does not grab other stuff
