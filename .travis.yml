@@ -9,7 +9,7 @@ matrix:
           services: docker
           env: 
             - TARGET_SYSTEM=Linux
-            - RT_BRANCH=5.4-rc2
+            - RT_BRANCH=5.4-rc3
           before_script:
                 - git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
                 - python support/travis_blocking_stdout.py
@@ -35,7 +35,7 @@ matrix:
           dist: trusty
           env: 
             - TARGET_SYSTEM=Windows
-            - RT_BRANCH=5.4-rc2
+            - RT_BRANCH=5.4-rc3
           before_script:
             - git clone https://github.com/SpiNNakerManchester/SupportScripts.git support
             - python support/travis_blocking_stdout.py
@@ -51,8 +51,8 @@ matrix:
             - cd $TRAVIS_BUILD_DIR/RawTherapee
             - pwd
             - ls rawtherapee-w64*.zip
-            - wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
-            - bash  ./upload_rotate.sh "continuous" rawtherapee-w64*.zip >& /dev/null
+            - #wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
+            - #bash  ./upload_rotate.sh "continuous" rawtherapee-w64*.zip >& /dev/null
 
 branches:
   except:
