@@ -192,7 +192,7 @@ mkdir -p /sources/build/appimage
 cd /sources/build/appimage || exit 1
 cmake \
     -DCMAKE_BUILD_TYPE="release"  \
-    -DCACHE_NAME_SUFFIX="5-dev-ai" \
+    -DCACHE_NAME_SUFFIX="" \
     -DPROC_TARGET_NUMBER="0" \
     -DBUILD_BUNDLE="OFF" \
     -DCMAKE_INSTALL_PREFIX="/${PREFIX}" \
